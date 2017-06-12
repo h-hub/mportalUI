@@ -1,0 +1,53 @@
+<div class="col-md-12" [hidden]="submitted">
+  <h2>Create Movie</h2>
+  <div class="col-md-8">
+    <form class="form-horizontal" (ngSubmit)="onSubmit()" #appCreateMovie="ngForm">
+      <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel">
+          <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Name is required </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="year" class="col-sm-2 control-label">Year</label>
+        <div class="col-sm-10">
+          <input class="" id="year" mdInput [mdDatepicker]="picker">
+          <button mdSuffix [mdDatepickerToggle]="picker"></button>
+          <md-datepicker #picker></md-datepicker>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="director" class="col-sm-2 control-label">Director</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="director" required [(ngModel)]="model.director" name="director" #director="ngModel">
+          <div [hidden]="director.valid || director.pristine" class="alert alert-danger">Director is required </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Genre</label>
+        <div class="col-sm-10">			
+			<label class="checkbox-inline" *ngFor="let gen of genres">
+				<input name="genres" type="checkbox" [value]="gen.value"> {{gen.name}}
+			</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="description" class="col-sm-2 control-label">Description</label>
+        <div class="col-sm-10">
+        	<textarea class="form-control" rows="5" id="description" required [(ngModel)]="model.description" name="description" #description="ngModel"></textarea>
+          <div [hidden]="description.valid || description.pristine" class="alert alert-danger">Description is required </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-success" [disabled]="!appCreateMovie.form.valid">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-4">
+    Latest News
+  </div>
+
+</div>

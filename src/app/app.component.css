@@ -1,0 +1,7 @@
+.jumbotron{
+	background-image: url("../assets/images/Star-Wars3.jpg");
+	height:300px;
+	background-size:     cover;                      /* <------ */
+  background-repeat:   no-repeat;
+  background-position: center top;              /* optional, center the image */
+}
