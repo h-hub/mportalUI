@@ -2,7 +2,9 @@
  * Created by bjayamanna on 6/16/2017.
  */
 import { Component, OnInit } from '@angular/core';
+import { NgForm  } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import 'rxjs/Rx';
 
 import { AlertService, AuthenticationService } from '../../services/services';
 
@@ -15,6 +17,8 @@ export class LoginComponent implements OnInit {
   model: any = {};
   loading = false;
   returnUrl: string;
+  usernamePlaceholder = "";
+  passwordPlaceholder = "";
 
   constructor(
     private route: ActivatedRoute,
@@ -30,8 +34,14 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
-  login() {
+  login(f: NgForm) {
     this.loading = true;
+    if(!f.valid && !f.value.username){
+      this.usernamePlaceholder = 'Username is required';
+    }
+    if(!f.valid && !f.value.password){
+      this.passwordPlaceholder = 'Password is required';
+    }
     this.authenticationService.login(this.model.username, this.model.password)
       .subscribe(
         data => {
