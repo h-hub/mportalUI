@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MdDatepickerModule, MdNativeDateModule } from '@angular/material';
@@ -12,6 +13,10 @@ import { CreateMovieComponent } from './movie/create-movie/create-movie.componen
 import { AboutComponent } from './about/about.component';
 import { UserComponent } from './user/user/user.component';
 import { CreateUserComponent } from './user/create-user/create-user.component';
+import { LoginComponent } from './user/login/login.component';
+import { AlertComponent } from './alert/alert.component';
+
+import { AlertService, AuthenticationService, UserService } from './services/services';
 
 @NgModule({
   declarations: [
@@ -21,10 +26,13 @@ import { CreateUserComponent } from './user/create-user/create-user.component';
     CreateMovieComponent,
     AboutComponent,
     UserComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    LoginComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MdDatepickerModule,
@@ -53,7 +61,11 @@ import { CreateUserComponent } from './user/create-user/create-user.component';
       }
     ])
   ],
-  providers: [],
+  providers: [
+    AlertService,
+    AuthenticationService,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
