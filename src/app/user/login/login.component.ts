@@ -35,13 +35,17 @@ export class LoginComponent implements OnInit {
   }
 
   login(f: NgForm) {
-    this.loading = true;
+    
     if(!f.valid && !f.value.username){
       this.usernamePlaceholder = 'Username is required';
+      return;
     }
     if(!f.valid && !f.value.password){
       this.passwordPlaceholder = 'Password is required';
+      return;
     }
+    this.loading = true;
+    
     this.authenticationService.login(this.model.username, this.model.password)
       .subscribe(
         data => {
