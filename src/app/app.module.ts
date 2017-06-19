@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MdDatepickerModule, MdNativeDateModule } from '@angular/material';
+import { MdDatepickerModule, MdNativeDateModule, MdDialogModule } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -14,9 +14,9 @@ import { AboutComponent } from './about/about.component';
 import { UserComponent } from './user/user/user.component';
 import { CreateUserComponent } from './user/create-user/create-user.component';
 import { LoginComponent } from './user/login/login.component';
-import { AlertComponent } from './alert/alert.component';
+import { AlertDialog } from './alert/alert-dialog.component';
 
-import { AlertService, AuthenticationService, UserService } from './services/services';
+import { AlertService, AuthenticationService, UserService, DialogService } from './services/services';
 import { AuthGuard } from './guard/auth.guard';
 
 @NgModule({
@@ -29,7 +29,7 @@ import { AuthGuard } from './guard/auth.guard';
     UserComponent,
     CreateUserComponent,
     LoginComponent,
-    AlertComponent
+    AlertDialog
   ],
   imports: [
     BrowserModule,
@@ -39,6 +39,7 @@ import { AuthGuard } from './guard/auth.guard';
     MdDatepickerModule,
     MdNativeDateModule,
     FormsModule,
+    MdDialogModule,
     RouterModule.forRoot([
       {
         path: '',
@@ -66,7 +67,11 @@ import { AuthGuard } from './guard/auth.guard';
     AlertService,
     AuthGuard,
     AuthenticationService,
-    UserService
+    UserService,
+    DialogService
+  ],
+  entryComponents: [
+    AlertDialog
   ],
   bootstrap: [AppComponent]
 })

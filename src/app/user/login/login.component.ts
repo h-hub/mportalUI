@@ -6,7 +6,7 @@ import { NgForm  } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/Rx';
 
-import { AlertService, AuthenticationService } from '../../services/services';
+import { AlertService, AuthenticationService, DialogService } from '../../services/services';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +24,9 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private alertService: AlertService) { }
+    private alertService: AlertService,
+    private dialogService: DialogService
+  ) { }
 
   ngOnInit() {
     // reset login status
@@ -35,7 +37,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(f: NgForm) {
-    
+
     if(!f.valid && !f.value.username){
       this.usernamePlaceholder = 'Username is required';
       return;
@@ -45,14 +47,16 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.loading = true;
-    
+
     this.authenticationService.login(this.model.username, this.model.password)
       .subscribe(
         data => {
           this.router.navigate([this.returnUrl]);
         },
         error => {
-          this.alertService.error(error);
+          this.dialogService
+            .confirm('Confirm Dialog', 'Are you sure you want to do this?')
+            .subscribe(res => error = res);
           this.loading = false;
         });
   }
