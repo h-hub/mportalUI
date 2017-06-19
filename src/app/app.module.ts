@@ -17,6 +17,7 @@ import { LoginComponent } from './user/login/login.component';
 import { AlertComponent } from './alert/alert.component';
 
 import { AlertService, AuthenticationService, UserService } from './services/services';
+import { AuthGuard } from './guard/auth.guard';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { AlertService, AuthenticationService, UserService } from './services/ser
       },
       {
         path: 'create_movie',
-        component: CreateMovieComponent
+        component: CreateMovieComponent, canActivate: [AuthGuard]
       },
       {
         path: 'profile',
@@ -63,6 +64,7 @@ import { AlertService, AuthenticationService, UserService } from './services/ser
   ],
   providers: [
     AlertService,
+    AuthGuard,
     AuthenticationService,
     UserService
   ],
