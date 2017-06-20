@@ -6,7 +6,7 @@ import { NgForm  } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/Rx';
 
-import { AlertService, AuthenticationService, DialogService } from '../../services/services';
+import { AuthenticationService, DialogService } from '../../services/services';
 
 @Component({
   selector: 'app-login',
@@ -17,9 +17,10 @@ export class LoginComponent implements OnInit {
   model: any = {};
   loading = false;
   returnUrl: string;
-  usernamePlaceholder = "";
-  passwordPlaceholder = "";
+  usernamePlaceholder = "Username*";
+  passwordPlaceholder = "Password*";
   error : any = '';
+  loggedIn = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,8 +30,11 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // reset login status
-    this.authenticationService.logout();
+
+    if (localStorage.getItem('currentUser')) {
+      // logged in so return true
+      this.loggedIn = true;
+    }
 
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -51,6 +55,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.model.username, this.model.password)
       .subscribe(
         data => {
+          this.loggedIn = true;
           this.router.navigate([this.returnUrl]);
         },
         error => {
@@ -59,5 +64,11 @@ export class LoginComponent implements OnInit {
             .subscribe(res => this.error = res);
           this.loading = false;
         });
+  }
+
+  logOut(){
+    // reset login status
+    this.authenticationService.logout();
+    window.location.href = '/';
   }
 }
