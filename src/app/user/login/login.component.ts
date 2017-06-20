@@ -19,12 +19,12 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   usernamePlaceholder = "";
   passwordPlaceholder = "";
+  error : any = '';
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private alertService: AlertService,
     private dialogService: DialogService
   ) { }
 
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
         error => {
           this.dialogService
             .confirm('Confirm Dialog', 'Are you sure you want to do this?')
-            .subscribe(res => error = res);
+            .subscribe(res => this.error = res);
           this.loading = false;
         });
   }

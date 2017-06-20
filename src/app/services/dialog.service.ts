@@ -2,8 +2,8 @@
  * Created by bjayamanna on 6/19/2017.
  */
 import { Observable } from 'rxjs/Rx';
-import { AlertDialog } from '../alert/alert-dialog.component';
-import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
+import { AlertDialog } from '../notification/alert-dialog.component';
+import { MdDialogRef, MdDialog } from '@angular/material';
 import { Injectable } from '@angular/core';
 
 @Injectable()

@@ -4,7 +4,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MdDatepickerModule, MdNativeDateModule, MdDialogModule } from '@angular/material';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -14,7 +14,7 @@ import { AboutComponent } from './about/about.component';
 import { UserComponent } from './user/user/user.component';
 import { CreateUserComponent } from './user/create-user/create-user.component';
 import { LoginComponent } from './user/login/login.component';
-import { AlertDialog } from './alert/alert-dialog.component';
+import { AlertDialog } from './notification/alert-dialog.component';
 
 import { AlertService, AuthenticationService, UserService, DialogService } from './services/services';
 import { AuthGuard } from './guard/auth.guard';
