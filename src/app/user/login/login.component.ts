@@ -6,11 +6,12 @@ import { NgForm  } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/Rx';
 
-import { AuthenticationService, DialogService } from '../../services/services';
+import { AuthenticationService, DialogService, SessionService } from '../../services/services';
 
 @Component({
   selector: 'app-login',
-  templateUrl: '/login.component.html'
+  templateUrl: '/login.component.html',
+  styleUrls: ['/login.component.css']
 })
 
 export class LoginComponent implements OnInit {
@@ -21,12 +22,14 @@ export class LoginComponent implements OnInit {
   passwordPlaceholder = "Password*";
   error : any = '';
   loggedIn = false;
+  username: string;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private sessionService: SessionService
   ) { }
 
   ngOnInit() {
@@ -34,6 +37,7 @@ export class LoginComponent implements OnInit {
     if (localStorage.getItem('currentUser')) {
       // logged in so return true
       this.loggedIn = true;
+      this.username = JSON.parse(this.sessionService.getUser()).name;
     }
 
     // get return url from route parameters or default to '/'
@@ -57,6 +61,7 @@ export class LoginComponent implements OnInit {
         data => {
           this.loggedIn = true;
           this.router.navigate([this.returnUrl]);
+          this.username = JSON.parse(this.sessionService.getUser()).name;
 
         },
         error => {

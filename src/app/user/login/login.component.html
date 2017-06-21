@@ -13,6 +13,7 @@
 </form>
 
 <div *ngIf="loggedIn" class="navbar-form navbar-right">
+  <span class="name">Welcome {{username}} </span>
   <button  class="btn btn-warning" (click)="logOut()">Logout</button>
 </div>
 
