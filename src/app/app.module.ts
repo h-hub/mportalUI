@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MdDatepickerModule, MdNativeDateModule, MdDialogModule } from '@angular/material';
+import { MdDatepickerModule, MdNativeDateModule, MdDialogModule, MdButtonModule } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
@@ -40,6 +40,7 @@ import { AuthGuard } from './guard/auth.guard';
     MdNativeDateModule,
     FormsModule,
     MdDialogModule,
+    MdButtonModule,
     RouterModule.forRoot([
       {
         path: '',

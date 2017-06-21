@@ -57,10 +57,11 @@ export class LoginComponent implements OnInit {
         data => {
           this.loggedIn = true;
           this.router.navigate([this.returnUrl]);
+
         },
         error => {
           this.dialogService
-            .confirm('Confirm Dialog', 'Are you sure you want to do this?')
+            .confirm('Username or Password Incorrect', 'Please try again.')
             .subscribe(res => this.error = res);
           this.loading = false;
         });

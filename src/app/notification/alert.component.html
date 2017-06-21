@@ -1,4 +1,3 @@
 <div *ngIf="message" [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">
   {{message.text}}
-  <button md-button (click)="openDialog()">Open dialog</button>
 </div>
