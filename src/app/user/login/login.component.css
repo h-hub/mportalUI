@@ -1,3 +1,10 @@
 .name{
   color: bisque;
 }
+.fa-spinner{
+	color: white;
+}
+.loading-icon{
+	width:10px;
+	display: inline-block;
+}

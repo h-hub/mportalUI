@@ -14,6 +14,7 @@ import { AboutComponent } from './about/about.component';
 import { UserComponent } from './user/user/user.component';
 import { CreateUserComponent } from './user/create-user/create-user.component';
 import { LoginComponent } from './user/login/login.component';
+import { RegisterComponent } from './user/register/register.component';
 import { AlertDialog } from './notification/alert-dialog.component';
 
 import { AlertService, AuthenticationService, UserService, DialogService, SessionService } from './services/services';
@@ -29,6 +30,7 @@ import { AuthGuard } from './guard/auth.guard';
     UserComponent,
     CreateUserComponent,
     LoginComponent,
+    RegisterComponent,
     AlertDialog
   ],
   imports: [
@@ -61,6 +63,10 @@ import { AuthGuard } from './guard/auth.guard';
       {
         path: 'create_user',
         component: CreateUserComponent
+      },
+      {
+        path: 'register',
+        component: RegisterComponent
       }
     ])
   ],
