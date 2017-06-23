@@ -1,35 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 import { AlertService, UserService } from '../../services/services';
+import { validateEmail } from '../../utils/email-validator';
+import { validatePassword } from '../../utils/password-validator';
 import { User } from '../../models/user';
 
 @Component({
     moduleId: module.id,
-    templateUrl: 'register.component.html'
+    templateUrl: 'register.component.html',
+  styleUrls: ['/register.component.css']
 })
 
-export class RegisterComponent {
+export class RegisterComponent implements OnInit{
   userForm: FormGroup;
   user = User;
+  submitted = false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder) { }
+
+  ngOnInit(): void {
     this.createForm();
   }
 
   createForm() {
     this.userForm = this.fb.group({ // <-- the parent FormGroup
-      username: ['', Validators.required ],
-      password: '',
-      passwordRepeate: '',
-      email: '',
-      emailRepeate: ''
+      username: ['', [Validators.required, Validators.minLength(4)] ],
+      passwords: this.fb.group({
+        password: ['', Validators.required],
+        passwordRepeat: ['', Validators.required]
+      }, {validator: validatePassword}),
+      email: [ '', [Validators.required, validateEmail] ],
+      emailRepeat: ''
     });
   }
 
   onSubmit(){
-      
+    this.submitted = true;
   }
 }
 

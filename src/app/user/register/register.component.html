@@ -1,49 +1,55 @@
-               
-            <div class="col-md-6">
-                <h3 class="dark-grey">Registration</h3>
-                <form [formGroup]="userForm" (ngSubmit)="onSubmit()"  novalidate>
-                    <div class="form-group col-lg-12">
-                        <label>Username</label>
-                        <input type="text" class="form-control" id="" formControlName="username">
-                    </div>
-                    
-                    <div class="form-group col-lg-6">
-                        <label>Password</label>
-                        <input type="password" class="form-control" id="" formControlName="password">
-                    </div>
-                    
-                    <div class="form-group col-lg-6">
-                        <label>Repeat Password</label>
-                        <input type="password" class="form-control" id="" formControlName="passwordRepeate">
-                    </div>
-                                    
-                    <div class="form-group col-lg-6">
-                        <label>Email Address</label>
-                        <input type="" class="form-control" id="" formControlName="email">
-                    </div>
-                    
-                    <div class="form-group col-lg-6">
-                        <label>Repeat Email Address</label>
-                        <input type="" class="form-control" id="" formControlName="emailRepeate">
-                    </div>
-                </form>             
-            </div>
-        
-            <div class="col-md-6">
-                <h3 class="dark-grey">Terms and Conditions</h3>
-                <p>
-                    By clicking on "Register" you agree to The Company's' Terms and Conditions
-                </p>
-                <p>
-                    While rare, prices are subject to change based on exchange rate fluctuations - 
-                    should such a fluctuation happen, we may request an additional payment. You have the option to request a full refund or to pay the new price. (Paragraph 13.5.8)
-                </p>
-                <p>
-                    Should there be an error in the description or pricing of a product, we will provide you with a full refund (Paragraph 13.5.6)
-                </p>
-                <p>
-                    Acceptance of an order by us is dependent on our suppliers ability to provide the product. (Paragraph 13.5.6)
-                </p>
-                
-                <button type="submit" class="btn btn-primary">Register</button>
-            </div>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
+  <div class="col-md-6">
+    <h3 class="dark-grey">Registration</h3>
+
+    <div class="form-group col-lg-12">
+      <label>Username</label>
+      <input type="text" class="form-control" id="username" formControlName="username">
+      <span [hidden]="!userForm.controls['username'].valid && !submitted"  class="warning">Username is not valid</span>
+    </div>
+    <div formGroupName="passwords">
+      <div class="form-group col-lg-6">
+        <label>Password</label>
+        <input type="password" class="form-control" id="password" formControlName="password">
+      </div>
+
+      <div class="form-group col-lg-6">
+        <label>Repeat Password</label>
+        <input type="password" class="form-control" id="passwordRepeat" formControlName="passwordRepeat">
+        <span [hidden]="!userForm.get('passwords').hasError('nomatch') && !submitted"  class="warning">Password is not valid</span>
+      </div>
+    </div>
+    <div class="form-group col-lg-6">
+      <label>Email Address</label>
+      <input type="" class="form-control" id="email" formControlName="email">
+      <span [hidden]="!userForm.controls['email'].valid && !submitted"  class="warning">Email is not valid</span>
+    </div>
+
+    <div class="form-group col-lg-6">
+      <label>Repeat Email Address</label>
+      <input type="" class="form-control" id="emailRepeat" formControlName="emailRepeat">
+    </div>
+
+  </div>
+
+  <div class="col-md-6">
+    <h3 class="dark-grey">Terms and Conditions</h3>
+    <p>
+      By clicking on "Register" you agree to The Company's' Terms and Conditions
+    </p>
+    <p>
+      While rare, prices are subject to change based on exchange rate fluctuations -
+      should such a fluctuation happen, we may request an additional payment. You have the option to request a full
+      refund or to pay the new price. (Paragraph 13.5.8)
+    </p>
+    <p>
+      Should there be an error in the description or pricing of a product, we will provide you with a full refund
+      (Paragraph 13.5.6)
+    </p>
+    <p>
+      Acceptance of an order by us is dependent on our suppliers ability to provide the product. (Paragraph 13.5.6)
+    </p>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+  </div>
+</form>
