@@ -4,31 +4,39 @@
 
     <div class="form-group col-lg-12">
       <label>Username</label>
+      <span>3 to 15 characters with any lower case character, digit or special symbol “_-” only</span>
       <input type="text" class="form-control" id="username" formControlName="username">
-      <span [hidden]="!userForm.controls['username'].valid && !submitted"  class="warning">Username is not valid</span>
+      <span *ngIf="!userForm.controls['username'].valid && submitted"  class="warning">Username is not valid</span>
     </div>
+
     <div formGroupName="passwords">
       <div class="form-group col-lg-6">
         <label>Password</label>
         <input type="password" class="form-control" id="password" formControlName="password">
+        <span [hidden]="!userForm.get('passwords.password').valid && !submitted"  class="warning">Passwords is not valid</span>
       </div>
 
       <div class="form-group col-lg-6">
         <label>Repeat Password</label>
         <input type="password" class="form-control" id="passwordRepeat" formControlName="passwordRepeat">
-        <span [hidden]="!userForm.get('passwords').hasError('nomatch') && !submitted"  class="warning">Password is not valid</span>
+        <span [hidden]="!userForm.get('passwords').hasError('isEqual')"  class="warning">Passwords do not match</span>
       </div>
     </div>
-    <div class="form-group col-lg-6">
-      <label>Email Address</label>
-      <input type="" class="form-control" id="email" formControlName="email">
-      <span [hidden]="!userForm.controls['email'].valid && !submitted"  class="warning">Email is not valid</span>
-    </div>
 
-    <div class="form-group col-lg-6">
-      <label>Repeat Email Address</label>
-      <input type="" class="form-control" id="emailRepeat" formControlName="emailRepeat">
+    <div formGroupName="emails">
+      <div class="form-group col-lg-6">
+        <label>Email Address</label>
+        <input type="" class="form-control" id="email" formControlName="email">
+        <span [hidden]="!userForm.get('emails.email').valid && !submitted"  class="warning">Email is not valid</span>
+      </div>
+
+      <div class="form-group col-lg-6">
+        <label>Repeat Email Address</label>
+        <input type="" class="form-control" id="emailRepeat" formControlName="emailRepeat">
+        <span [hidden]="!userForm.get('emails').hasError('isEqual')"  class="warning">Emails do not match</span>
+      </div>
     </div>
+    
 
   </div>
 

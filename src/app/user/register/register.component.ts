@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 
 import { AlertService, UserService } from '../../services/services';
 import { validateEmail } from '../../utils/email-validator';
-import { validatePassword } from '../../utils/password-validator';
+import { isEqual } from '../../utils/isequal-validator';
 import { User } from '../../models/user';
 
 @Component({
@@ -28,11 +28,14 @@ export class RegisterComponent implements OnInit{
     this.userForm = this.fb.group({ // <-- the parent FormGroup
       username: ['', [Validators.required, Validators.minLength(4)] ],
       passwords: this.fb.group({
-        password: ['', Validators.required],
-        passwordRepeat: ['', Validators.required]
-      }, {validator: validatePassword}),
-      email: [ '', [Validators.required, validateEmail] ],
-      emailRepeat: ''
+        password: ['', [Validators.required, Validators.minLength(8)] ],
+        passwordRepeat: ['', [Validators.required, Validators.minLength(8)] ]
+      }, {validator: isEqual}),
+      emails: this.fb.group({
+        email: [ '', [Validators.required, validateEmail] ],
+        emailRepeat: [ '', [Validators.required, validateEmail] ]
+      }, {validator: isEqual})
+      
     });
   }
 
