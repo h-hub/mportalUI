@@ -3,40 +3,39 @@
     <h3 class="dark-grey">Registration</h3>
 
     <div class="form-group col-lg-12">
-      <label>Username</label>
-      <span>3 to 15 characters with any lower case character, digit or special symbol “_-” only</span>
+      <label>Username <i class="fa fa-info-circle" aria-hidden="true" mdTooltip="3 to 15 characters with any lower case character, digit or special symbol “_-” only"></i></label>
       <input type="text" class="form-control" id="username" formControlName="username">
-      <span *ngIf="!userForm.controls['username'].valid && submitted"  class="warning">Username is not valid</span>
+      <small [hidden]="userForm.controls['username'].valid || userForm.controls['username'].pristine"  class="warning">Username is not valid</small>
     </div>
 
     <div formGroupName="passwords">
       <div class="form-group col-lg-6">
-        <label>Password</label>
+        <label>Password <i class="fa fa-info-circle" aria-hidden="true" mdTooltip="Use more than 8 Characters"></i></label>
         <input type="password" class="form-control" id="password" formControlName="password">
-        <span [hidden]="!userForm.get('passwords.password').valid && !submitted"  class="warning">Passwords is not valid</span>
+        <span [hidden]="userForm.controls['passwords']['controls'].password.valid  || userForm.controls['passwords']['controls'].password.pristine"  class="warning">Passwords is not valid</span>
       </div>
 
       <div class="form-group col-lg-6">
         <label>Repeat Password</label>
         <input type="password" class="form-control" id="passwordRepeat" formControlName="passwordRepeat">
-        <span [hidden]="!userForm.get('passwords').hasError('isEqual')"  class="warning">Passwords do not match</span>
+        <span [hidden]="!userForm.controls['passwords'].hasError('isEqual') || userForm.controls['passwords']['controls'].passwordRepeat.pristine"  class="warning">Passwords do not match</span>
       </div>
     </div>
 
     <div formGroupName="emails">
       <div class="form-group col-lg-6">
-        <label>Email Address</label>
+        <label>Email Address <i class="fa fa-info-circle" aria-hidden="true" mdTooltip="Use a valid Email"></i></label>
         <input type="" class="form-control" id="email" formControlName="email">
-        <span [hidden]="!userForm.get('emails.email').valid && !submitted"  class="warning">Email is not valid</span>
+        <span [hidden]="userForm.controls['emails']['controls'].email.valid || userForm.controls['emails']['controls'].email.pristine"  class="warning">Email is not valid</span>
       </div>
 
       <div class="form-group col-lg-6">
         <label>Repeat Email Address</label>
         <input type="" class="form-control" id="emailRepeat" formControlName="emailRepeat">
-        <span [hidden]="!userForm.get('emails').hasError('isEqual')"  class="warning">Emails do not match</span>
+        <span [hidden]="!userForm.controls['emails'].hasError('isEqual') || userForm.get('emails.emailRepeat').pristine"  class="warning">Emails do not match</span>
       </div>
     </div>
-    
+
 
   </div>
 
@@ -46,18 +45,16 @@
       By clicking on "Register" you agree to The Company's' Terms and Conditions
     </p>
     <p>
-      While rare, prices are subject to change based on exchange rate fluctuations -
-      should such a fluctuation happen, we may request an additional payment. You have the option to request a full
-      refund or to pay the new price. (Paragraph 13.5.8)
+      Donec bibendum turpis et ullamcorper ornare. Nulla quis ex arcu. Etiam accumsan urna a convallis varius. Praesent vestibulum,
+      lorem et accumsan rutrum.
     </p>
     <p>
-      Should there be an error in the description or pricing of a product, we will provide you with a full refund
-      (Paragraph 13.5.6)
+      Donec bibendum turpis et ullamcorper ornare. Nulla quis ex arcu. Etiam accumsan urna a convallis varius. Praesent vestibulum
     </p>
     <p>
-      Acceptance of an order by us is dependent on our suppliers ability to provide the product. (Paragraph 13.5.6)
+      lorem et accumsan rutrum, ex dui malesuada risus, at volutpat nibh orci id elit. Proin et sodales libero.
     </p>
 
-    <button type="submit" class="btn btn-primary">Register</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Register</button>
   </div>
 </form>
