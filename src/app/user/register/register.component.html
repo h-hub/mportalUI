@@ -34,6 +34,7 @@
         <input type="" class="form-control" id="emailRepeat" formControlName="emailRepeat">
         <span [hidden]="!userForm.controls['emails'].hasError('isEqual') || userForm.get('emails.emailRepeat').pristine"  class="warning">Emails do not match</span>
       </div>
+      <alert></alert>
     </div>
 
 

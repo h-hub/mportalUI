@@ -55,7 +55,8 @@ export class RegisterComponent implements OnInit{
               this.router.navigate(['/']);
           },
           error => {
-              this.alertService.error(error);
+              //TODO: Log the error information : error
+              this.alertService.error("Something went wrong. Please retry");
               this.loading = false;
           });
   }

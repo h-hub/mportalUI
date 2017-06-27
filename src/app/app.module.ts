@@ -16,6 +16,7 @@ import { CreateUserComponent } from './user/create-user/create-user.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
 import { AlertDialog } from './notification/alert-dialog.component';
+import { AlertComponent } from './notification/alert.component';
 
 import { AlertService, AuthenticationService, UserService, DialogService, SessionService } from './services/services';
 import { AuthGuard } from './guard/auth.guard';
@@ -31,7 +32,8 @@ import { AuthGuard } from './guard/auth.guard';
     CreateUserComponent,
     LoginComponent,
     RegisterComponent,
-    AlertDialog
+    AlertDialog,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
