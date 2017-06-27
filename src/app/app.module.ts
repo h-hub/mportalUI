@@ -18,7 +18,7 @@ import { RegisterComponent } from './user/register/register.component';
 import { AlertDialog } from './notification/alert-dialog.component';
 import { AlertComponent } from './notification/alert.component';
 
-import { AlertService, AuthenticationService, UserService, DialogService, SessionService } from './services/services';
+import { AlertService, AuthenticationService, UserService, DialogService, SessionService, Config } from './services/services';
 import { AuthGuard } from './guard/auth.guard';
 
 @NgModule({
@@ -79,7 +79,8 @@ import { AuthGuard } from './guard/auth.guard';
     AuthenticationService,
     UserService,
     DialogService,
-    SessionService
+    SessionService,
+    Config
   ],
   entryComponents: [
     AlertDialog

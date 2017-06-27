@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, Input  } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -13,9 +13,9 @@ import { User } from '../../models/user';
   styleUrls: ['/register.component.css']
 })
 
-export class RegisterComponent implements OnInit{
+export class RegisterComponent implements OnChanges {
   userForm: FormGroup;
-  user: User;
+  @Input() user: User;
   submitted = false;
   loading = false;
 
@@ -23,9 +23,7 @@ export class RegisterComponent implements OnInit{
     private fb: FormBuilder,
     private router: Router,
     private userService: UserService,
-    private alertService: AlertService) { }
-
-  ngOnInit(): void {
+    private alertService: AlertService) {
     this.createForm();
   }
 
@@ -59,6 +57,7 @@ export class RegisterComponent implements OnInit{
               this.alertService.error("Something went wrong. Please retry");
               this.loading = false;
           });
+    this.ngOnChanges();
   }
 
   prepareSaveUser(): User {
@@ -71,5 +70,9 @@ export class RegisterComponent implements OnInit{
       email: formModel.email as string
     };
     return saveUser;
+  }
+
+  ngOnChanges() {
+    this.userForm.reset();
   }
 }

@@ -8,12 +8,11 @@ import { JwtHelper } from 'angular2-jwt';
 @Injectable()
 export class SessionService {
 
-  jwtHelper: JwtHelper = new JwtHelper();
-
   getUser(){
+    let jwtHelper: JwtHelper = new JwtHelper();
     var token = JSON.parse(localStorage.getItem('currentUser'));
     return JSON.stringify({
-      "name" : this.jwtHelper.decodeToken(token.token).sub
+      "name" : jwtHelper.decodeToken(token.token).sub
     });
   }
 }

@@ -4,11 +4,17 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
+import { Config } from './services';
 import { User } from '../models/user';
 
 @Injectable()
 export class UserService {
-  constructor(private http: Http) { }
+
+
+
+  constructor(
+    private http: Http,
+    private _config: Config) { }
 
   getAll() {
     return this.http.get('/api/users', this.jwt()).map((response: Response) => response.json());
@@ -19,6 +25,7 @@ export class UserService {
   }
 
   create(user: User) {
+    var url = this._config.get('apiUrl');
     return this.http.post('/api/users', user, this.jwt()).map((response: Response) => response.json());
   }
 
