@@ -56,6 +56,6 @@
       lorem et accumsan rutrum, ex dui malesuada risus, at volutpat nibh orci id elit. Proin et sodales libero.
     </p>
 
-    <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Register</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Register</button> <i *ngIf="loading" class="fa fa-spinner fa-spin" [ngStyle]="{'font-size': size+'px'}" aria-hidden="true"></i>
   </div>
 </form>

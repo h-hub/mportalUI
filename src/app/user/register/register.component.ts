@@ -50,7 +50,7 @@ export class RegisterComponent implements OnChanges {
           data => {
               // set success message and pass true paramater to persist the message after redirecting to the login page
               this.alertService.success('Registration successful', true);
-              this.router.navigate(['/']);
+              this.loading = false;
           },
           error => {
               //TODO: Log the error information : error
@@ -66,8 +66,10 @@ export class RegisterComponent implements OnChanges {
     const saveUser: User = {
       id: null,
       username: formModel.username as string,
-      password: formModel.password as string,
-      email: formModel.email as string
+      password: formModel.passwords.password as string,
+      passwordRepeat: formModel.passwords.passwordRepeat as string,
+      email: formModel.emails.email as string,
+      emailRepeat: formModel.emails.emailRepeat as string
     };
     return saveUser;
   }

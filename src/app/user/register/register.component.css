@@ -1,3 +1,10 @@
 .warning{
   color:red;
 }
+.fa-spinner{
+  color: black;
+}
+.loading-icon{
+  width:10px;
+  display: inline-block;
+}

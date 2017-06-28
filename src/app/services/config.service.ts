@@ -16,7 +16,7 @@ export class Config {
 
   load() {
     return new Promise((resolve, reject) => {
-      this.http.get('/app/config/env.json')
+      this.http.get('../../config/env.json')
       .map(res => res.json())
         .subscribe((env_data) => {
           this._env = env_data;

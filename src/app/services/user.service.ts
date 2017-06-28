@@ -10,7 +10,12 @@ import { User } from '../models/user';
 @Injectable()
 export class UserService {
 
-
+  private headers = new Headers({
+    'Content-Type': 'application/json',
+    'X-Requested-With': 'XMLHttpRequest',
+    'Access-Control-Allow-Origin': '*',
+    'Cache-Control': 'no-cache'
+  });
 
   constructor(
     private http: Http,
@@ -25,8 +30,7 @@ export class UserService {
   }
 
   create(user: User) {
-    var url = this._config.get('apiUrl');
-    return this.http.post('/api/users', user, this.jwt()).map((response: Response) => response.json());
+    return this.http.post(this._config.get('apiUrl')+'users', JSON.stringify(user), {headers: this.headers});
   }
 
   update(user: User) {
