@@ -1,5 +1,4 @@
 import { Component, OnChanges, Input  } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AlertService, UserService } from '../../services/services';
@@ -21,7 +20,6 @@ export class RegisterComponent implements OnChanges {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router,
     private userService: UserService,
     private alertService: AlertService) {
     this.createForm();
@@ -49,7 +47,7 @@ export class RegisterComponent implements OnChanges {
       .subscribe(
           data => {
               // set success message and pass true paramater to persist the message after redirecting to the login page
-              this.alertService.success('Registration successful', true);
+              this.alertService.success('Registration successful, Login using Username and Password', true);
               this.loading = false;
           },
           error => {
