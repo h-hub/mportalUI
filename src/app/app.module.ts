@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { NavComponent } from './nav/nav.component';
 import { MovieComponent } from './movie/movie/movie.component';
 import { CreateMovieComponent } from './movie/create-movie/create-movie.component';
 import { AboutComponent } from './about/about.component';
@@ -25,6 +26,7 @@ import { AuthGuard } from './guard/auth.guard';
   declarations: [
     AppComponent,
     HomeComponent,
+    NavComponent,
     MovieComponent,
     CreateMovieComponent,
     AboutComponent,

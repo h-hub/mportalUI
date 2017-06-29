@@ -10,9 +10,11 @@ export class SessionService {
 
   getUser(){
     let jwtHelper: JwtHelper = new JwtHelper();
+    if(!localStorage.getItem('currentUser')) return null;
     var token = JSON.parse(localStorage.getItem('currentUser'));
     return JSON.stringify({
-      "name" : jwtHelper.decodeToken(token.token).sub
+      "name" : jwtHelper.decodeToken(token.token).sub,
+      "role" : jwtHelper.decodeToken(token.token).scopes[0]
     });
   }
 }

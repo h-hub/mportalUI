@@ -59,8 +59,8 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.model.username, this.model.password)
       .subscribe(
         data => {
+          window.location.href = '/';
           this.loggedIn = true;
-          this.router.navigate([this.returnUrl]);
           this.username = JSON.parse(this.sessionService.getUser()).name;
 
         },
