@@ -30,7 +30,7 @@ export class UserService {
   }
 
   create(user: User) {
-    return this.http.post(this._config.get('apiUrl')+'users', JSON.stringify(user), {headers: this.headers});
+    return this.http.post(this._config.get('apiUrl')+'users/create', JSON.stringify(user), {headers: this.headers});
   }
 
   update(user: User) {
